@@ -35,6 +35,11 @@ func main() {
 	if token := client.Connect(); token.Wait() && token.Error() != nil {
 		panic(token.Error())
 	}
+
+	sub(client)
+	publish(client)
+
+	client.Disconnect(250)
 }
 
 func publish(client mqtt.Client) {
