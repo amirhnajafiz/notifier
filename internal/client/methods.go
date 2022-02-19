@@ -6,7 +6,7 @@ import (
 )
 
 func (c Client) Publish() {
-	num := 10
+	num := 2
 	for i := 0; i < num; i++ {
 		text := fmt.Sprintf("Message %d", i)
 		token := c.Connection.Publish("topic/test", 0, false, text)
@@ -19,5 +19,5 @@ func (c Client) Sub() {
 	topic := "topic/test"
 	token := c.Connection.Subscribe(topic, 1, nil)
 	token.Wait()
-	fmt.Printf("Subscribed to topic: %s", topic)
+	fmt.Printf("Subscribed to topic: %s\n", topic)
 }

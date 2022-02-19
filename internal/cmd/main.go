@@ -4,6 +4,7 @@ import (
 	"cmd/internal/broker"
 	"cmd/internal/client"
 	"cmd/internal/config"
+	"time"
 )
 
 func Execute() {
@@ -21,6 +22,8 @@ func Execute() {
 
 	clt.Publish()
 	clt.Sub()
+
+	time.Sleep(2 * time.Second)
 
 	clt.Disconnect()
 }
