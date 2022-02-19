@@ -11,7 +11,7 @@ func Execute() {
 
 	opts := broker.MQTT{
 		Cfg: cfg.Broker,
-	}.Register(cfg.Broker)
+	}.Register()
 
 	clt := client.Client{}.Register(opts)
 
