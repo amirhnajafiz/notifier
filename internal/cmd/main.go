@@ -1,11 +1,26 @@
 package cmd
 
 import (
+	"cmd/internal/broker"
+	"cmd/internal/client"
 	"cmd/internal/config"
-	"fmt"
 )
 
 func Execute() {
 	cfg := config.New()
-	fmt.Println(cfg.Broker)
+
+	opts := broker.MQTT{
+		Cfg: cfg.Broker,
+	}.Register(cfg.Broker)
+
+	clt := client.Client{}.Register(opts)
+
+	if token := clt.Connect(); token.Wait() && token.Error() != nil {
+		panic(token.Error())
+	}
+
+	clt.Publish()
+	clt.Sub()
+
+	clt.Disconnect()
 }
