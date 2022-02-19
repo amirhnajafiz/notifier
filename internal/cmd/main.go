@@ -7,5 +7,5 @@ import (
 
 func Execute() {
 	cfg := config.New()
-	fmt.Println(cfg.Test)
+	fmt.Println(cfg.Broker)
 }

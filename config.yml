@@ -1,2 +1,6 @@
-test:
-  "Hello world"
+mqtt:
+  host: "broker.emqx.io"
+  port: 1883
+  clientID: "go_mqtt_client"
+  user: "emqx"
+  password: "public"
