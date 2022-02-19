@@ -18,14 +18,14 @@ var connectLostHandler mqtt.ConnectionLostHandler = func(client mqtt.Client, err
 	fmt.Printf("Connect lost: %v", err)
 }
 
-func Preaper() {
-	broker := "broker.emqx.io"
-	port := 1883
+func Register(cfg Config) {
+	broker := cfg.Host
+	port := cfg.Port
 	opts := mqtt.NewClientOptions()
 	opts.AddBroker(fmt.Sprintf("tcp://%s:%d", broker, port))
-	opts.SetClientID("go_mqtt_client")
-	opts.SetUsername("emqx")
-	opts.SetPassword("public")
+	opts.SetClientID(cfg.ClientID)
+	opts.SetUsername(cfg.Username)
+	opts.SetPassword(cfg.Password)
 	opts.SetDefaultPublishHandler(messagePubHandler)
 	opts.OnConnect = connectHandler
 	opts.OnConnectionLost = connectLostHandler
