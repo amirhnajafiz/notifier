@@ -6,19 +6,29 @@ import (
 	"time"
 )
 
-var messagePubHandler mqtt.MessageHandler = func(client mqtt.Client, msg mqtt.Message) {
-	fmt.Printf("Received message: %s from topic: %s\n", msg.Payload(), msg.Topic())
+type MQTT struct {
+	Cfg Config
 }
 
-var connectHandler mqtt.OnConnectHandler = func(client mqtt.Client) {
-	fmt.Println("Connected")
+func (m MQTT) messagePubHandler() mqtt.MessageHandler {
+	return func(client mqtt.Client, msg mqtt.Message) {
+		fmt.Printf("Received message: %s from topic: %s\n", msg.Payload(), msg.Topic())
+	}
 }
 
-var connectLostHandler mqtt.ConnectionLostHandler = func(client mqtt.Client, err error) {
-	fmt.Printf("Connect lost: %v", err)
+func (m MQTT) connectHandler() mqtt.OnConnectHandler {
+	return func(client mqtt.Client) {
+		fmt.Println("Connected")
+	}
 }
 
-func Register(cfg Config) {
+func (m MQTT) connectLostHandler() mqtt.ConnectionLostHandler {
+	return func(client mqtt.Client, err error) {
+		fmt.Printf("Connect lost: %v", err)
+	}
+}
+
+func (m MQTT) Register(cfg Config) {
 	broker := cfg.Host
 	port := cfg.Port
 	opts := mqtt.NewClientOptions()
@@ -26,9 +36,9 @@ func Register(cfg Config) {
 	opts.SetClientID(cfg.ClientID)
 	opts.SetUsername(cfg.Username)
 	opts.SetPassword(cfg.Password)
-	opts.SetDefaultPublishHandler(messagePubHandler)
-	opts.OnConnect = connectHandler
-	opts.OnConnectionLost = connectLostHandler
+	opts.SetDefaultPublishHandler(m.messagePubHandler())
+	opts.OnConnect = m.connectHandler()
+	opts.OnConnectionLost = m.connectLostHandler()
 
 	client := mqtt.NewClient(opts)
 
