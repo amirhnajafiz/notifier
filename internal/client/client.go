@@ -16,6 +16,14 @@ func (c Client) Register(opts *mqtt.ClientOptions) Client {
 	return c
 }
 
+func (c Client) Connect() mqtt.Token {
+	return c.Connection.Connect()
+}
+
+func (c Client) Disconnect() {
+	c.Connection.Disconnect(250)
+}
+
 func (c Client) Publish() {
 	num := 10
 	for i := 0; i < num; i++ {

@@ -25,12 +25,12 @@ func (m MQTT) Register(cfg Config) {
 
 	clt := client.Client{}.Register(opts)
 
-	if token := clt.Connection.Connect(); token.Wait() && token.Error() != nil {
+	if token := clt.Connect(); token.Wait() && token.Error() != nil {
 		panic(token.Error())
 	}
 
 	clt.Publish()
 	clt.Sub()
 
-	clt.Connection.Disconnect(250)
+	clt.Disconnect()
 }
