@@ -1,6 +1,7 @@
 package broker
 
 import (
+	"cmd/internal/client"
 	"fmt"
 	mqtt "github.com/eclipse/paho.mqtt.golang"
 	"time"
@@ -13,6 +14,7 @@ type MQTT struct {
 func (m MQTT) Register(cfg Config) {
 	broker := cfg.Host
 	port := cfg.Port
+
 	opts := mqtt.NewClientOptions()
 	opts.AddBroker(fmt.Sprintf("tcp://%s:%d", broker, port))
 	opts.SetClientID(cfg.ClientID)
@@ -22,16 +24,16 @@ func (m MQTT) Register(cfg Config) {
 	opts.OnConnect = m.connectHandler()
 	opts.OnConnectionLost = m.connectLostHandler()
 
-	client := mqtt.NewClient(opts)
+	clt := client.Register(opts)
 
-	if token := client.Connect(); token.Wait() && token.Error() != nil {
+	if token := clt.Connect(); token.Wait() && token.Error() != nil {
 		panic(token.Error())
 	}
 
-	sub(client)
-	publish(client)
+	sub(clt)
+	publish(clt)
 
-	client.Disconnect(250)
+	clt.Disconnect(250)
 }
 
 func publish(client mqtt.Client) {
