@@ -1,15 +1,30 @@
 package handler
 
-import "github.com/gofiber/fiber/v2"
+import (
+	"github.com/gofiber/fiber/v2"
+	"time"
+)
 
 func (h Handler) Publish(c *fiber.Ctx) error {
-	h.Client.Publish(c.Params("topic"), c.Params("message"))
+	err := h.Client.Publish(c.Params("topic"), c.Params("message"))
+
+	if err != nil {
+		return err
+	}
 
 	return c.SendString("message published")
 }
 
 func (h Handler) Subscribe(c *fiber.Ctx) error {
-	h.Client.Sub(c.Params("topic"))
+	topic, msg, err := h.Client.Sub(c.Params("topic"))
 
-	return c.SendString("message received")
+	if err != nil {
+		return err
+	}
+
+	return c.JSON(&fiber.Map{
+		"message": msg,
+		"topic":   topic,
+		"date":    time.Now(),
+	})
 }
