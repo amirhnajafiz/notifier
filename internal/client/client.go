@@ -1,10 +1,12 @@
 package client
 
 import (
+	"cmd/internal/broker"
 	mqtt "github.com/eclipse/paho.mqtt.golang"
 )
 
 type Client struct {
+	Broker     broker.MQTT
 	Connection mqtt.Client
 }
 
