@@ -11,7 +11,7 @@ func (c Client) Publish(topic string, msg string) error {
 }
 
 func (c Client) Sub(topic string) (string, string, error) {
-	if token := c.Connection.Subscribe(topic, 1, nil); token.WaitTimeout(time.Second*3) && token.Error() != nil {
+	if token := c.Connection.Subscribe(topic, 0, nil); token.WaitTimeout(time.Second*3) && token.Error() != nil {
 		return "", "", token.Error()
 	}
 
