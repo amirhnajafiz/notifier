@@ -13,12 +13,12 @@ func (m MQTT) messagePubHandler() mqtt.MessageHandler {
 
 func (m MQTT) connectHandler() mqtt.OnConnectHandler {
 	return func(client mqtt.Client) {
-		fmt.Println("Connected")
+		return
 	}
 }
 
 func (m MQTT) connectLostHandler() mqtt.ConnectionLostHandler {
 	return func(client mqtt.Client, err error) {
-		fmt.Printf("Connect lost: %v\n", err)
+		return
 	}
 }
