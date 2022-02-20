@@ -12,11 +12,13 @@ import (
 func Execute() {
 	cfg := config.New()
 
-	opts := broker.MQTT{
+	mqtt := broker.MQTT{
 		Cfg: cfg.Broker,
-	}.Register()
+	}
 
-	clt := client.Client{}.Register(opts)
+	clt := client.Client{
+		Broker: mqtt,
+	}.Register(mqtt.Register())
 
 	if token := clt.Connect(); token.Wait() && token.Error() != nil {
 		panic(token.Error())
