@@ -5,14 +5,10 @@ import (
 	"time"
 )
 
-func (c Client) Publish() {
-	num := 2
-	for i := 0; i < num; i++ {
-		text := fmt.Sprintf("Message %d", i)
-		token := c.Connection.Publish("topic/test", 0, false, text)
-		token.Wait()
-		time.Sleep(time.Second)
-	}
+func (c Client) Publish(topic string, msg string) {
+	token := c.Connection.Publish(topic, 0, false, msg)
+	token.Wait()
+	time.Sleep(time.Second)
 }
 
 func (c Client) Sub() {
