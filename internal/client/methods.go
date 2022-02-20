@@ -1,19 +1,15 @@
 package client
 
-import "fmt"
-
 func (c Client) Publish(topic string, msg string) error {
 	if token := c.Connection.Publish(topic, 0, false, msg); token.Wait() && token.Error() != nil {
 		return token.Error()
 	}
 
-	fmt.Printf("%s sent\n", topic)
-
 	return nil
 }
 
 func (c Client) Sub(topic string) (string, string, error) {
-	if token := c.Connection.Subscribe(topic, 1, nil); token.Wait() && token.Error() != nil {
+	if token := c.Connection.Subscribe(topic, 0, nil); token.Wait() && token.Error() != nil {
 		return "", "", token.Error()
 	}
 

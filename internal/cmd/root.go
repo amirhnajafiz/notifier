@@ -33,4 +33,6 @@ func Execute() {
 	if err != nil {
 		log.Fatal(err)
 	}
+
+	clt.Disconnect()
 }
