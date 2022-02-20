@@ -5,7 +5,7 @@ import (
 )
 
 func New() *fiber.App {
-	app := fiber.New()
+	app := fiber.New(getConfig())
 
 	return app
 }
