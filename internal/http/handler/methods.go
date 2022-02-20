@@ -5,8 +5,16 @@ import (
 	"time"
 )
 
+type Content struct {
+	Topic string `json:"topic" xml:"topic" form:"topic"`
+	Msg   string `json:"message" xml:"message" form:"message"`
+}
+
 func (h Handler) Publish(c *fiber.Ctx) error {
-	err := h.Client.Publish(c.Params("topic"), c.Params("message"))
+	var cnt Content
+	_ = c.BodyParser(&cnt)
+
+	err := h.Client.Publish(cnt.Topic, cnt.Msg)
 
 	if err != nil {
 		return err
