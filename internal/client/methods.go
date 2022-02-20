@@ -1,16 +1,17 @@
 package client
 
-import (
-	"time"
-)
+func (c Client) Publish(topic string, msg string) error {
+	if token := c.Connection.Publish(topic, 0, false, msg); token.Wait() && token.Error() != nil {
+		return token.Error()
+	}
 
-func (c Client) Publish(topic string, msg string) {
-	token := c.Connection.Publish(topic, 0, false, msg)
-	token.Wait()
-	time.Sleep(time.Second)
+	return nil
 }
 
-func (c Client) Sub(topic string) {
-	token := c.Connection.Subscribe(topic, 1, nil)
-	token.Wait()
+func (c Client) Sub(topic string) (string, error) {
+	if token := c.Connection.Subscribe(topic, 1, nil); token.Wait() && token.Error() != nil {
+		return "", token.Error()
+	}
+
+	return "", nil
 }
