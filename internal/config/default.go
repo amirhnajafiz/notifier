@@ -1,6 +1,9 @@
 package config
 
-import "cmd/internal/broker"
+import (
+	"cmd/internal/broker"
+	"cmd/internal/cmd/server"
+)
 
 func Default() Config {
 	return Config{
@@ -10,6 +13,9 @@ func Default() Config {
 			ClientID: "go_mqtt_client",
 			Username: "emqx",
 			Password: "public",
+		},
+		Server: server.Config{
+			Port: ":3030",
 		},
 	}
 }

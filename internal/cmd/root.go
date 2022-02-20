@@ -29,7 +29,7 @@ func Execute() {
 		Client: clt,
 	}.Register(app)
 
-	err := app.Listen(":3030")
+	err := app.Listen(cfg.Server.Port)
 	if err != nil {
 		log.Fatal(err)
 	}

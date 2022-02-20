@@ -2,6 +2,7 @@ package config
 
 import (
 	"cmd/internal/broker"
+	"cmd/internal/cmd/server"
 	"github.com/knadh/koanf"
 	"github.com/knadh/koanf/parsers/yaml"
 	"github.com/knadh/koanf/providers/file"
@@ -11,6 +12,7 @@ import (
 
 type Config struct {
 	Broker broker.Config `koanf:"mqtt"`
+	Server server.Config `koanf:"serv"`
 }
 
 func New() Config {

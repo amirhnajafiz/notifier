@@ -2,6 +2,10 @@ package server
 
 import "github.com/gofiber/fiber/v2"
 
+type Config struct {
+	Port string `koanf:"port"`
+}
+
 func getConfig() fiber.Config {
 	return fiber.Config{
 		EnableTrustedProxyCheck: true,
