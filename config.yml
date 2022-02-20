@@ -5,4 +5,4 @@ mqtt:
   user: "emqx"
   password: "public"
 serv:
-  port: 5000
+  port: ":5000"

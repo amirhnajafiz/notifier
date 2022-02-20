@@ -5,4 +5,4 @@ mqtt:
   user: "emqx"
   password: "public"
 serv:
-  port: 3030
+  port: ":3030"
