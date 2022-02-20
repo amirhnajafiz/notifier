@@ -11,7 +11,7 @@ type Handler struct {
 
 func (h Handler) Register(app *fiber.App) Handler {
 	app.Post("/api/send", h.Publish)
-	app.Get("api//catch", h.Subscribe)
+	app.Get("/api/catch", h.Subscribe)
 
 	return h
 }

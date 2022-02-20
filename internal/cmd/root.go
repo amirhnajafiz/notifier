@@ -5,6 +5,8 @@ import (
 	"cmd/internal/client"
 	"cmd/internal/cmd/server"
 	"cmd/internal/config"
+	"cmd/internal/http/handler"
+	"log"
 )
 
 func Execute() {
@@ -20,5 +22,13 @@ func Execute() {
 		panic(token.Error())
 	}
 
-	server.Register()
+	app := server.New()
+	handler.Handler{
+		Client: clt,
+	}.Register(app)
+
+	err := app.Listen(":3030")
+	if err != nil {
+		log.Fatal(err)
+	}
 }
