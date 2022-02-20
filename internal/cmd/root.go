@@ -3,8 +3,8 @@ package cmd
 import (
 	"cmd/internal/broker"
 	"cmd/internal/client"
+	"cmd/internal/cmd/server"
 	"cmd/internal/config"
-	"time"
 )
 
 func Execute() {
@@ -20,10 +20,5 @@ func Execute() {
 		panic(token.Error())
 	}
 
-	clt.Publish()
-	clt.Sub()
-
-	time.Sleep(2 * time.Second)
-
-	clt.Disconnect()
+	server.Register()
 }
