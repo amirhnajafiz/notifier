@@ -9,5 +9,7 @@ func (h Handler) Publish(c *fiber.Ctx) error {
 }
 
 func (h Handler) Subscribe(c *fiber.Ctx) error {
+	h.Client.Sub(c.Params("topic"))
+
 	return c.SendString("message received")
 }
