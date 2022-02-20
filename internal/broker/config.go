@@ -6,4 +6,5 @@ type Config struct {
 	ClientID string `koanf:"clientID"`
 	Username string `koanf:"user"`
 	Password string `koanf:"password"`
+	Debug    bool   `koanf:"debug"`
 }

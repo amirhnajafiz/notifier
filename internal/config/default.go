@@ -13,6 +13,7 @@ func Default() Config {
 			ClientID: "go_mqtt_client",
 			Username: "emqx",
 			Password: "public",
+			Debug:    false,
 		},
 		Server: server.Config{
 			Port: ":3030",

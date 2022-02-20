@@ -4,5 +4,6 @@ mqtt:
   clientID: "go_mqtt_client"
   user: "emqx"
   password: "public"
+  debug: false
 serv:
   port: ":5000"

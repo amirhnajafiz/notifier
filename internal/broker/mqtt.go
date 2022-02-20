@@ -15,8 +15,10 @@ type MQTT struct {
 }
 
 func (m MQTT) Register() *mqtt.ClientOptions {
-	mqtt.DEBUG = log.New(os.Stdout, "mqtt", 0)
-	mqtt.ERROR = log.New(os.Stdout, "mqtt", 0)
+	if m.Cfg.Debug {
+		mqtt.DEBUG = log.New(os.Stdout, "mqtt", 0)
+		mqtt.ERROR = log.New(os.Stdout, "mqtt", 0)
+	}
 
 	broker := m.Cfg.Host
 	port := m.Cfg.Port
