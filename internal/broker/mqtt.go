@@ -6,7 +6,9 @@ import (
 )
 
 type MQTT struct {
-	Cfg Config
+	Cfg   Config
+	Topic string
+	Msg   string
 }
 
 func (m MQTT) Register() *mqtt.ClientOptions {
