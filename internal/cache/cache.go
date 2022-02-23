@@ -1,6 +1,8 @@
 package cache
 
-import "time"
+import (
+	"time"
+)
 
 type Message struct {
 	Topic   string
