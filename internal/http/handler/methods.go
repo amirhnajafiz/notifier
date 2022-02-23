@@ -3,7 +3,6 @@ package handler
 import (
 	"cmd/internal/http/request"
 	"github.com/gofiber/fiber/v2"
-	"time"
 )
 
 func (h Handler) Publish(c *fiber.Ctx) error {
@@ -20,15 +19,9 @@ func (h Handler) Publish(c *fiber.Ctx) error {
 }
 
 func (h Handler) Subscribe(c *fiber.Ctx) error {
-	h.Client.Sub(c.Query("topic"))
+	all := h.Client.Cache.Pull()
 
-	if err != nil {
-		return err
-	}
+	h.Client.Cache.Mock()
 
-	return c.JSON(&fiber.Map{
-		"message": msg,
-		"topic":   topic,
-		"date":    time.Now(),
-	})
+	return c.JSON(all)
 }
