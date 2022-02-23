@@ -5,5 +5,6 @@ mqtt:
   user: "emqx"
   password: "public"
   debug: true
+  topic: "chat/message"
 serv:
   port: ":3030"

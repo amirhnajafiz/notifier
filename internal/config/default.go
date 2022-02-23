@@ -14,6 +14,7 @@ func Default() Config {
 			Username: "emqx",
 			Password: "public",
 			Debug:    false,
+			Topic:    "chat/room",
 		},
 		Server: server.Config{
 			Port: ":3030",

@@ -8,7 +8,7 @@ import (
 )
 
 func (c Client) Publish(msg string) error {
-	if token := c.Connection.Publish("snapp/item", 0, false, msg); token.Wait() && token.Error() != nil {
+	if token := c.Connection.Publish(c.Cfg.Topic, 0, false, msg); token.Wait() && token.Error() != nil {
 		return fmt.Errorf("publish error: %w", token.Error())
 	}
 
@@ -16,7 +16,7 @@ func (c Client) Publish(msg string) error {
 }
 
 func (c Client) Sub(mqtt.Client) {
-	if token := c.Connection.Subscribe("snapp/item", 1, c.MessageHandler); token.Wait() && token.Error() != nil {
+	if token := c.Connection.Subscribe(c.Cfg.Topic, 1, c.MessageHandler); token.Wait() && token.Error() != nil {
 		log.Fatal(fmt.Errorf("failed subscrib %w", token.Error()))
 	}
 }
