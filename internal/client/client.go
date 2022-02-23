@@ -38,11 +38,3 @@ func (c Client) Register() Client {
 
 	return c
 }
-
-func (c *Client) MessageHandler(_ mqtt.Client, message mqtt.Message) {
-	c.Cache.Put(cache.Message{
-		Topic:   message.Topic(),
-		Content: string(message.Payload()),
-		Date:    time.Now(),
-	})
-}
