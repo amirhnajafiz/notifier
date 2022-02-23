@@ -9,7 +9,7 @@ func (h Handler) Publish(c *fiber.Ctx) error {
 	var req request.Request
 	_ = c.BodyParser(&req)
 
-	err := h.Client.Publish(req.Topic, req.Msg)
+	err := h.Client.Publish(req.Msg)
 
 	if err != nil {
 		return err

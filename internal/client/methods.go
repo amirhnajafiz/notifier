@@ -7,8 +7,8 @@ import (
 	mqtt "github.com/eclipse/paho.mqtt.golang"
 )
 
-func (c Client) Publish(topic string, msg string) error {
-	if token := c.Connection.Publish(topic, 0, false, msg); token.Wait() && token.Error() != nil {
+func (c Client) Publish(msg string) error {
+	if token := c.Connection.Publish("snapp/item", 0, false, msg); token.Wait() && token.Error() != nil {
 		return fmt.Errorf("publish error: %w", token.Error())
 	}
 
