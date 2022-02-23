@@ -1,4 +1,4 @@
-package broker
+package client
 
 type Config struct {
 	Host     string `koanf:"host"`

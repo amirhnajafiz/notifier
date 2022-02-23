@@ -1,7 +1,7 @@
 package config
 
 import (
-	"cmd/internal/broker"
+	"cmd/internal/client"
 	"cmd/internal/cmd/server"
 	"github.com/knadh/koanf"
 	"github.com/knadh/koanf/parsers/yaml"
@@ -11,7 +11,7 @@ import (
 )
 
 type Config struct {
-	Broker broker.Config `koanf:"mqtt"`
+	Client client.Config `koanf:"mqtt"`
 	Server server.Config `koanf:"serv"`
 }
 

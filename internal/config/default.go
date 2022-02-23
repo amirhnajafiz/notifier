@@ -1,13 +1,13 @@
 package config
 
 import (
-	"cmd/internal/broker"
+	"cmd/internal/client"
 	"cmd/internal/cmd/server"
 )
 
 func Default() Config {
 	return Config{
-		Broker: broker.Config{
+		Client: client.Config{
 			Host:     "broker.emqx.io",
 			Port:     1883,
 			ClientID: "go_mqtt_client",
