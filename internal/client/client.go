@@ -32,17 +32,17 @@ func (c Client) Register() Client {
 	opts.SetPassword(c.Cfg.Password)
 	opts.SetPingTimeout(1 * time.Second)
 
+	opts.OnConnect = c.Sub
+
 	c.Connection = mqtt.NewClient(opts)
 
 	return c
 }
 
-func (c *Client) MessageHandler() mqtt.MessageHandler {
-	return func(client mqtt.Client, message mqtt.Message) {
-		c.Cache.Put(cache.Message{
-			Topic:   message.Topic(),
-			Content: string(message.Payload()),
-			Date:    time.Now(),
-		})
-	}
+func (c *Client) MessageHandler(_ mqtt.Client, message mqtt.Message) {
+	c.Cache.Put(cache.Message{
+		Topic:   message.Topic(),
+		Content: string(message.Payload()),
+		Date:    time.Now(),
+	})
 }

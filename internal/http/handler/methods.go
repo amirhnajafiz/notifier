@@ -20,7 +20,7 @@ func (h Handler) Publish(c *fiber.Ctx) error {
 }
 
 func (h Handler) Subscribe(c *fiber.Ctx) error {
-	topic, msg, err := h.Client.Sub(c.Query("topic"))
+	h.Client.Sub(c.Query("topic"))
 
 	if err != nil {
 		return err
