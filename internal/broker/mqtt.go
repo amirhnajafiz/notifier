@@ -28,7 +28,6 @@ func (m MQTT) Register() *mqtt.ClientOptions {
 	opts.SetClientID(m.Cfg.ClientID)
 	opts.SetUsername(m.Cfg.Username)
 	opts.SetPassword(m.Cfg.Password)
-	opts.SetDefaultPublishHandler(m.messagePubHandler())
 	opts.SetPingTimeout(1 * time.Second)
 
 	opts.OnConnect = m.connectHandler()
