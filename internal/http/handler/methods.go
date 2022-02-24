@@ -3,6 +3,8 @@ package handler
 import (
 	"cmd/internal/http/request"
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/websocket/v2"
+	"log"
 )
 
 func (h Handler) Publish(c *fiber.Ctx) error {
@@ -18,10 +20,17 @@ func (h Handler) Publish(c *fiber.Ctx) error {
 	return c.SendString("message published")
 }
 
-func (h Handler) Subscribe(c *fiber.Ctx) error {
-	all := h.Client.Cache.Pull()
+func (h Handler) Subscribe(c *websocket.Conn) {
+	var (
+		mt  int
+		msg []byte
+		err error
+	)
 
-	h.Client.Cache.Mock()
-
-	return c.JSON(all)
+	for {
+		if err = c.WriteMessage(mt, msg); err != nil {
+			log.Println("write:", err)
+			break
+		}
+	}
 }
