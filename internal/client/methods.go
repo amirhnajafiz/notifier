@@ -18,8 +18,10 @@ func (c *Client) Publish(msg string) error {
 }
 
 func (c *Client) Sub(mqtt.Client) {
-	if token := c.Connection.Subscribe(c.Cfg.Topic, 0, c.MessageHandler); token.Wait() && token.Error() != nil {
-		log.Fatal(fmt.Errorf("failed subscrib %w", token.Error()))
+	if c.IsSubscriber {
+		if token := c.Connection.Subscribe(c.Cfg.Topic, 0, c.MessageHandler); token.Wait() && token.Error() != nil {
+			log.Fatal(fmt.Errorf("failed subscrib %w", token.Error()))
+		}
 	}
 }
 

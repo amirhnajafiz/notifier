@@ -11,9 +11,10 @@ import (
 )
 
 type Client struct {
-	Connection mqtt.Client
-	Cache      *cache.Cache
-	Cfg        Config
+	Connection   mqtt.Client
+	Cache        *cache.Cache
+	Cfg          Config
+	IsSubscriber bool
 }
 
 func (c Client) Register() Client {

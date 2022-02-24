@@ -14,8 +14,9 @@ func Execute() {
 	cfg := config.New()
 
 	clt := client.Client{
-		Cache: &cache.Cache{},
-		Cfg:   cfg.Client,
+		Cache:        &cache.Cache{},
+		Cfg:          cfg.Client,
+		IsSubscriber: false,
 	}.Register()
 
 	if token := clt.Connect(); token.Wait() && token.Error() != nil {

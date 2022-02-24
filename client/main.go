@@ -23,8 +23,9 @@ func getConfig() client.Config {
 
 func main() {
 	c := client.Client{
-		Cache: &cache.Cache{},
-		Cfg:   getConfig(),
+		Cache:        &cache.Cache{},
+		Cfg:          getConfig(),
+		IsSubscriber: true,
 	}.Register()
 
 	if token := c.Connect(); token.Wait() && token.Error() != nil {
