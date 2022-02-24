@@ -3,6 +3,7 @@ package handler
 import (
 	"cmd/internal/client"
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/websocket/v2"
 )
 
 type Handler struct {
@@ -11,7 +12,7 @@ type Handler struct {
 
 func (h Handler) Register(app *fiber.App) Handler {
 	app.Post("/api/send", h.Publish)
-	app.Get("/api/catch", h.Subscribe)
+	app.Use("/clone", websocket.New(h.Subscribe))
 
 	return h
 }
