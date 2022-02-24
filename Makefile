@@ -1,5 +1,5 @@
 dev:
 	go run cmd/main.go
 
-client:
+cli:
 	go run client/main.go
