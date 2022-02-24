@@ -28,6 +28,12 @@ func (h Handler) Subscribe(c *websocket.Conn) {
 	)
 
 	for {
+		if mt, msg, err = c.ReadMessage(); err != nil {
+			log.Println("read:", err)
+			break
+		}
+		log.Printf("recv: %s", msg)
+
 		if err = c.WriteMessage(mt, msg); err != nil {
 			log.Println("write:", err)
 			break
