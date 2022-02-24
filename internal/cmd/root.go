@@ -14,7 +14,7 @@ func Execute() {
 	cfg := config.New()
 
 	clt := client.Client{
-		Cache: cache.Cache{},
+		Cache: &cache.Cache{},
 		Cfg:   cfg.Client,
 	}.Register()
 

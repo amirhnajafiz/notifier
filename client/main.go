@@ -23,7 +23,7 @@ func getConfig() client.Config {
 
 func main() {
 	c := client.Client{
-		Cache: cache.Cache{},
+		Cache: &cache.Cache{},
 		Cfg:   getConfig(),
 	}.Register()
 
@@ -33,6 +33,8 @@ func main() {
 
 	for {
 		fmt.Println(c.Cache.Pull())
-		time.Sleep(4 * time.Second)
+
+		c.Cache.Mock()
+		time.Sleep(5 * time.Second)
 	}
 }

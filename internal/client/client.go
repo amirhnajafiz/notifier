@@ -12,7 +12,7 @@ import (
 
 type Client struct {
 	Connection mqtt.Client
-	Cache      cache.Cache
+	Cache      *cache.Cache
 	Cfg        Config
 }
 
