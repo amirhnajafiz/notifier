@@ -3,8 +3,6 @@ package main
 import (
 	"cmd/internal/cache"
 	"cmd/internal/client"
-	"fmt"
-	"time"
 )
 
 var count = 10
@@ -32,10 +30,5 @@ func main() {
 		panic(token.Error())
 	}
 
-	for {
-		fmt.Println(c.Cache.Pull())
-
-		c.Cache.Mock()
-		time.Sleep(5 * time.Second)
-	}
+	select {}
 }
