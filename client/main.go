@@ -13,11 +13,11 @@ func getConfig() client.Config {
 	return client.Config{
 		Host:     "broker.emqx.io",
 		Port:     1883,
-		ClientID: "go_mqtt_client",
-		Username: "emqx",
+		ClientID: "go_mqtt_client2",
+		Username: "emqx2",
 		Password: "public",
 		Debug:    false,
-		Topic:    "chat/room",
+		Topic:    "chat/message",
 	}
 }
 
@@ -31,10 +31,8 @@ func main() {
 		panic(token.Error())
 	}
 
-	for i := 0; i < count; i++ {
+	for {
 		fmt.Println(c.Cache.Pull())
-		c.Cache.Mock()
-
-		time.Sleep(2 * time.Second)
+		time.Sleep(4 * time.Second)
 	}
 }
