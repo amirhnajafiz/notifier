@@ -4,10 +4,8 @@ import (
 	"cmd/internal/http/request"
 	"encoding/json"
 	"fmt"
-	"log"
-	"time"
-
 	mqtt "github.com/eclipse/paho.mqtt.golang"
+	"log"
 )
 
 func (c *Client) Publish(msg string) error {
@@ -34,7 +32,7 @@ func (c *Client) MessageHandler(_ mqtt.Client, message mqtt.Message) {
 		_ = fmt.Errorf("problem in message unmarshaling %w", err)
 	}
 
-	fmt.Printf("%s #%d: %s\n", time.Now().Format(time.Kitchen), message.MessageID(), message.Payload())
+	fmt.Printf("%s #%s: %s\n", data.Date, data.ID, data.Msg)
 }
 
 func (c *Client) Connect() mqtt.Token {
