@@ -1,6 +1,8 @@
 package client
 
 import (
+	"cmd/internal/http/request"
+	"encoding/json"
 	"fmt"
 	"log"
 	"time"
@@ -25,6 +27,13 @@ func (c *Client) Sub(mqtt.Client) {
 }
 
 func (c *Client) MessageHandler(_ mqtt.Client, message mqtt.Message) {
+	var data request.Request
+
+	err := json.Unmarshal(message.Payload(), &data)
+	if err != nil {
+		_ = fmt.Errorf("problem in message unmarshaling %w", err)
+	}
+
 	fmt.Printf("%s #%d: %s\n", time.Now().Format(time.Kitchen), message.MessageID(), message.Payload())
 }
 
