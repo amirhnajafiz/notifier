@@ -51,3 +51,17 @@ func (h Handler) SetName(c *fiber.Ctx) error {
 		"nickname": value,
 	})
 }
+
+func (h Handler) WhoAmI(c *fiber.Ctx) error {
+	ctx := context.Background()
+	key, _ := os.Hostname()
+
+	value, err := h.Client.Rdb.Get(ctx, key).Result()
+	if err != nil {
+		panic(err)
+	}
+
+	return c.JSON(fiber.Map{
+		"nickname": value,
+	})
+}
