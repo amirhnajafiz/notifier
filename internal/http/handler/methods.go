@@ -14,8 +14,14 @@ func (h Handler) Publish(c *fiber.Ctx) error {
 	var req request.Request
 	_ = c.BodyParser(&req)
 
+	ctx := context.Background()
 	req.ID, _ = os.Hostname()
 	req.Date = time.Now().Format(time.RFC1123)
+
+	val, e := h.Client.Rdb.Get(ctx, req.ID).Result()
+	if e != nil {
+		req.ID = val
+	}
 
 	data, er := json.Marshal(req)
 	if er != nil {
