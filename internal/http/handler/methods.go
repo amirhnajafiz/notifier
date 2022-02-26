@@ -24,18 +24,3 @@ func (h Handler) Publish(c *fiber.Ctx) error {
 		"time":   time.Now().Format(time.RFC822),
 	})
 }
-
-func (h Handler) GetAllInCache(c *fiber.Ctx) error {
-	return c.JSON(h.Client.Cache.Pull())
-}
-
-func (h Handler) Clear(c *fiber.Ctx) error {
-	length := len(h.Client.Cache.Pull())
-
-	h.Client.Cache.Mock()
-
-	return c.JSON(fiber.Map{
-		"total":  length,
-		"status": "clear",
-	})
-}

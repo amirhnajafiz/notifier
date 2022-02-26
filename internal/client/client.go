@@ -6,13 +6,11 @@ import (
 	"os"
 	"time"
 
-	"cmd/internal/cache"
 	mqtt "github.com/eclipse/paho.mqtt.golang"
 )
 
 type Client struct {
 	Connection   mqtt.Client
-	Cache        *cache.Cache
 	Cfg          Config
 	IsSubscriber bool
 }

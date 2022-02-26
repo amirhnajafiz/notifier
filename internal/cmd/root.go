@@ -3,7 +3,6 @@ package cmd
 import (
 	"log"
 
-	"cmd/internal/cache"
 	"cmd/internal/client"
 	"cmd/internal/cmd/server"
 	"cmd/internal/config"
@@ -14,7 +13,6 @@ func Execute() {
 	cfg := config.New()
 
 	clt := client.Client{
-		Cache:        &cache.Cache{},
 		Cfg:          cfg.Client,
 		IsSubscriber: false,
 	}.Register()

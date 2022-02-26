@@ -1,7 +1,6 @@
 package client
 
 import (
-	"cmd/internal/cache"
 	"fmt"
 	"log"
 	"time"
@@ -10,12 +9,6 @@ import (
 )
 
 func (c *Client) Publish(msg string) error {
-	c.Cache.Put(cache.Message{
-		Topic:   c.Cfg.Topic,
-		Content: msg,
-		Date:    time.Now(),
-	})
-
 	if token := c.Connection.Publish(c.Cfg.Topic, 0, false, msg); token.Wait() && token.Error() != nil {
 		return fmt.Errorf("publish error: %w", token.Error())
 	}
