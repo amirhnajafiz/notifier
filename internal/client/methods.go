@@ -1,15 +1,21 @@
 package client
 
 import (
+	"cmd/internal/cache"
 	"fmt"
 	"log"
 	"time"
 
-	"cmd/internal/cache"
 	mqtt "github.com/eclipse/paho.mqtt.golang"
 )
 
 func (c *Client) Publish(msg string) error {
+	c.Cache.Put(cache.Message{
+		Topic:   c.Cfg.Topic,
+		Content: msg,
+		Date:    time.Now(),
+	})
+
 	if token := c.Connection.Publish(c.Cfg.Topic, 0, false, msg); token.Wait() && token.Error() != nil {
 		return fmt.Errorf("publish error: %w", token.Error())
 	}
@@ -26,12 +32,6 @@ func (c *Client) Sub(mqtt.Client) {
 }
 
 func (c *Client) MessageHandler(_ mqtt.Client, message mqtt.Message) {
-	c.Cache.Put(cache.Message{
-		Topic:   message.Topic(),
-		Content: string(message.Payload()),
-		Date:    time.Now(),
-	})
-
 	fmt.Printf("%s #%d: %s\n", time.Now().Format(time.Kitchen), message.MessageID(), message.Payload())
 }
 
