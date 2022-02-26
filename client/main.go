@@ -15,7 +15,7 @@ func load() client.Config {
 	k := koanf.New(".")
 
 	// Load configuration
-	if err := k.Load(file.Provider("config.json"), yaml.Parser()); err != nil {
+	if err := k.Load(file.Provider("./client/config.json"), yaml.Parser()); err != nil {
 		log.Printf("error loading config.json: %s\n", err)
 	}
 
