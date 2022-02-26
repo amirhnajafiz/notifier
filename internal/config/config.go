@@ -1,6 +1,7 @@
 package config
 
 import (
+	"cmd/internal/cache"
 	"log"
 
 	"cmd/internal/client"
@@ -14,6 +15,7 @@ import (
 type Config struct {
 	Client client.Config `koanf:"mqtt"`
 	Server server.Config `koanf:"serv"`
+	Cache  cache.Config  `koanf:"cache"`
 }
 
 func New() Config {

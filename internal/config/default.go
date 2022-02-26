@@ -1,6 +1,7 @@
 package config
 
 import (
+	"cmd/internal/cache"
 	"cmd/internal/client"
 	"cmd/internal/cmd/server"
 )
@@ -18,6 +19,10 @@ func Default() Config {
 		},
 		Server: server.Config{
 			Port: ":3030",
+		},
+		Cache: cache.Config{
+			Host:     "localhost:6379",
+			Password: "",
 		},
 	}
 }
