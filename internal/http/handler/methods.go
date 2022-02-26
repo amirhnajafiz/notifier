@@ -28,7 +28,12 @@ func (h Handler) Publish(c *fiber.Ctx) error {
 		return er
 	}
 
-	err := h.Client.Publish(string(data))
+	var topic string
+	if topic = req.Topic; topic == "" {
+		topic = h.Client.Cfg.Topic
+	}
+
+	err := h.Client.Publish(topic, string(data))
 
 	if err != nil {
 		return err

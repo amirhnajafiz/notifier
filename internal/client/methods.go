@@ -8,8 +8,8 @@ import (
 	"log"
 )
 
-func (c *Client) Publish(msg string) error {
-	if token := c.Connection.Publish(c.Cfg.Topic, 0, false, msg); token.Wait() && token.Error() != nil {
+func (c *Client) Publish(topic string, msg string) error {
+	if token := c.Connection.Publish(topic, 0, false, msg); token.Wait() && token.Error() != nil {
 		return fmt.Errorf("publish error: %w", token.Error())
 	}
 
