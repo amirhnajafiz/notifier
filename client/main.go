@@ -3,20 +3,34 @@ package main
 import (
 	"cmd/internal/cache"
 	"cmd/internal/client"
+	"github.com/knadh/koanf"
+	"github.com/knadh/koanf/parsers/yaml"
+	"github.com/knadh/koanf/providers/file"
+	"log"
 )
+
+func load() client.Config {
+	var instance client.Config
+
+	k := koanf.New("./client")
+
+	// Load configuration
+	if err := k.Load(file.Provider("config.json"), yaml.Parser()); err != nil {
+		log.Printf("error loading config.json: %s\n", err)
+	}
+
+	// Unmarshalling configurations
+	if err := k.Unmarshal("", &instance); err != nil {
+		log.Fatalf("error unmarshalling config: %s\n", err)
+	}
+
+	return instance
+}
 
 func main() {
 	c := client.Client{
-		Cache: &cache.Cache{},
-		Cfg: client.Config{
-			Host:     "broker.emqx.io",
-			Port:     1883,
-			ClientID: "go_mqtt_client2",
-			Username: "emqx2",
-			Password: "public",
-			Debug:    false,
-			Topic:    "chat/message",
-		},
+		Cache:        &cache.Cache{},
+		Cfg:          load(),
 		IsSubscriber: true,
 	}.Register()
 

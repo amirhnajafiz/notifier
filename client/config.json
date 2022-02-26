@@ -1,0 +1,9 @@
+{
+  "host": "broker.emqx.io",
+  "port": 1883,
+  "clientID": "myclient",
+  "user": "emqx-client",
+  "password": "public",
+  "debug": false,
+  "topic": "chat/message"
+}
