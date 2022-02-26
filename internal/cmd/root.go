@@ -16,7 +16,7 @@ func Execute() {
 	clt := client.Client{
 		Cfg:          cfg.Client,
 		IsSubscriber: false,
-		Rdb:          cache.New(),
+		Rdb:          cache.New(cfg.Cache),
 	}.Register()
 
 	if token := clt.Connect(); token.Wait() && token.Error() != nil {

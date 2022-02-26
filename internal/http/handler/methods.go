@@ -19,13 +19,13 @@ func (h Handler) Publish(c *fiber.Ctx) error {
 	req.Date = time.Now().Format(time.RFC1123)
 
 	val, e := h.Client.Rdb.Get(ctx, req.ID).Result()
-	if e != nil {
+	if e == nil {
 		req.ID = val
 	}
 
 	data, er := json.Marshal(req)
 	if er != nil {
-		panic(er)
+		return er
 	}
 
 	err := h.Client.Publish(string(data))
@@ -48,7 +48,7 @@ func (h Handler) SetName(c *fiber.Ctx) error {
 	key, _ := os.Hostname()
 
 	if err := h.Client.Rdb.Set(ctx, key, value, 0).Err(); err != nil {
-		panic(err)
+		return err
 	}
 
 	return c.JSON(fiber.Map{
@@ -63,7 +63,7 @@ func (h Handler) RemoveName(c *fiber.Ctx) error {
 	key, _ := os.Hostname()
 
 	if err := h.Client.Rdb.Del(ctx, key); err != nil {
-		panic(err)
+		return err.Err()
 	}
 
 	return c.JSON(fiber.Map{
@@ -77,7 +77,7 @@ func (h Handler) WhoAmI(c *fiber.Ctx) error {
 
 	value, err := h.Client.Rdb.Get(ctx, key).Result()
 	if err != nil {
-		panic(err)
+		return err
 	}
 
 	return c.JSON(fiber.Map{
