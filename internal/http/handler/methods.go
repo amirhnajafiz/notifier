@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"encoding/json"
 	"os"
 	"time"
 
@@ -15,7 +16,12 @@ func (h Handler) Publish(c *fiber.Ctx) error {
 	req.ID, _ = os.Hostname()
 	req.Date = time.Now().Format(time.RFC1123)
 
-	err := h.Client.Publish(req.Msg)
+	data, er := json.Marshal(req)
+	if er != nil {
+		panic(er)
+	}
+
+	err := h.Client.Publish(string(data))
 
 	if err != nil {
 		return err
