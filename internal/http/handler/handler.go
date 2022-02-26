@@ -12,6 +12,7 @@ type Handler struct {
 func (h Handler) Register(app *fiber.App) Handler {
 	app.Post("/api/send", h.Publish)
 	app.Get("/api/past", h.GetAllInCache)
+	app.Delete("/api/mock", h.Clear)
 
 	return h
 }
