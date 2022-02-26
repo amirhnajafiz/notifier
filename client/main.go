@@ -12,7 +12,7 @@ import (
 func load() client.Config {
 	var instance client.Config
 
-	k := koanf.New("./client")
+	k := koanf.New(".")
 
 	// Load configuration
 	if err := k.Load(file.Provider("config.json"), yaml.Parser()); err != nil {
