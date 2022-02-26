@@ -98,3 +98,8 @@ Sat, 26 Feb 2022 19:13:18 +0330 #Amirs-MacBook-Pro.local: test990
 ```
 
 ## Dependencies
+- In this project we are using **MQTT** public server.
+- You need to have **redis** database setup already.
+- Using go v1.17
+- fiber/v2 v2.27.0
+- paho.mqtt.golang v1.3.5
