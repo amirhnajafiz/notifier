@@ -32,7 +32,7 @@ func (c *Client) MessageHandler(_ mqtt.Client, message mqtt.Message) {
 		Date:    time.Now(),
 	})
 
-	fmt.Printf(time.Now().Format(time.Kitchen)+" you have %d new messages.\n", len(c.Cache.Pull()))
+	fmt.Printf("%s #%d: %s\n", time.Now().Format(time.Kitchen), message.MessageID(), message.Payload())
 }
 
 func (c *Client) Connect() mqtt.Token {

@@ -5,8 +5,6 @@ import (
 	"cmd/internal/client"
 )
 
-var count = 10
-
 func getConfig() client.Config {
 	return client.Config{
 		Host:     "broker.emqx.io",
