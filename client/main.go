@@ -1,12 +1,13 @@
 package main
 
 import (
+	"log"
+
 	"cmd/internal/cache"
 	"cmd/internal/client"
 	"github.com/knadh/koanf"
 	"github.com/knadh/koanf/parsers/yaml"
 	"github.com/knadh/koanf/providers/file"
-	"log"
 )
 
 func load() client.Config {

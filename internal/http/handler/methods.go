@@ -23,3 +23,7 @@ func (h Handler) Publish(c *fiber.Ctx) error {
 		"time":   time.Now().Format(time.RFC822),
 	})
 }
+
+func (h Handler) GetAllInCache(c *fiber.Ctx) error {
+	return c.JSON(h.Client.Cache.Pull())
+}
