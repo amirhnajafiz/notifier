@@ -28,9 +28,9 @@ func (h Handler) Publish(c *fiber.Ctx) error {
 	}
 
 	return c.JSON(fiber.Map{
-		"status": "OK",
-		"length": len(req.Msg),
-		"type":   "text",
-		"time":   time.Now().Format(time.RFC822),
+		"status":    "200|OK",
+		"length":    len(req.Msg),
+		"send from": req.ID,
+		"time":      req.Date,
 	})
 }
