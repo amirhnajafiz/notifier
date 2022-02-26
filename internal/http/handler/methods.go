@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"context"
 	"encoding/json"
 	"os"
 	"time"
@@ -32,5 +33,21 @@ func (h Handler) Publish(c *fiber.Ctx) error {
 		"length":    len(req.Msg),
 		"send from": req.ID,
 		"time":      req.Date,
+	})
+}
+
+func (h Handler) SetName(c *fiber.Ctx) error {
+	ctx := context.Background()
+	value := c.Query("nickname")
+	key, _ := os.Hostname()
+
+	if err := h.Client.Rdb.Set(ctx, key, value, 0).Err(); err != nil {
+		panic(err)
+	}
+
+	return c.JSON(fiber.Map{
+		"status":   "200|OK",
+		"name":     key,
+		"nickname": value,
 	})
 }
