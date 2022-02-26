@@ -8,3 +8,6 @@ mqtt:
   topic: "chat/message"
 serv:
   port: ":3030"
+redis:
+  host : "localhost:6379"
+  password : ""
