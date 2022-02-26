@@ -7,12 +7,14 @@ import (
 	"time"
 
 	mqtt "github.com/eclipse/paho.mqtt.golang"
+	"github.com/go-redis/redis/v8"
 )
 
 type Client struct {
 	Connection   mqtt.Client
 	Cfg          Config
 	IsSubscriber bool
+	Rdb          *redis.Client
 }
 
 func (c Client) Register() Client {

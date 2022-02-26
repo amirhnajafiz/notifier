@@ -3,6 +3,7 @@ package cmd
 import (
 	"log"
 
+	"cmd/internal/cache"
 	"cmd/internal/client"
 	"cmd/internal/cmd/server"
 	"cmd/internal/config"
@@ -15,6 +16,7 @@ func Execute() {
 	clt := client.Client{
 		Cfg:          cfg.Client,
 		IsSubscriber: false,
+		Rdb:          cache.New(),
 	}.Register()
 
 	if token := clt.Connect(); token.Wait() && token.Error() != nil {
