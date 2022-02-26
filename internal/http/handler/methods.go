@@ -58,6 +58,19 @@ func (h Handler) SetName(c *fiber.Ctx) error {
 	})
 }
 
+func (h Handler) RemoveName(c *fiber.Ctx) error {
+	ctx := context.Background()
+	key, _ := os.Hostname()
+
+	if err := h.Client.Rdb.Del(ctx, key); err != nil {
+		panic(err)
+	}
+
+	return c.JSON(fiber.Map{
+		"status": "200|OK",
+	})
+}
+
 func (h Handler) WhoAmI(c *fiber.Ctx) error {
 	ctx := context.Background()
 	key, _ := os.Hostname()
