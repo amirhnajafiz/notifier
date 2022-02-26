@@ -5,22 +5,18 @@ import (
 	"cmd/internal/client"
 )
 
-func getConfig() client.Config {
-	return client.Config{
-		Host:     "broker.emqx.io",
-		Port:     1883,
-		ClientID: "go_mqtt_client2",
-		Username: "emqx2",
-		Password: "public",
-		Debug:    false,
-		Topic:    "chat/message",
-	}
-}
-
 func main() {
 	c := client.Client{
-		Cache:        &cache.Cache{},
-		Cfg:          getConfig(),
+		Cache: &cache.Cache{},
+		Cfg: client.Config{
+			Host:     "broker.emqx.io",
+			Port:     1883,
+			ClientID: "go_mqtt_client2",
+			Username: "emqx2",
+			Password: "public",
+			Debug:    false,
+			Topic:    "chat/message",
+		},
 		IsSubscriber: true,
 	}.Register()
 
