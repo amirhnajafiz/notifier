@@ -3,7 +3,6 @@ package main
 import (
 	"log"
 
-	"cmd/internal/cache"
 	"cmd/internal/client"
 	"github.com/knadh/koanf"
 	"github.com/knadh/koanf/parsers/yaml"
@@ -30,7 +29,6 @@ func load() client.Config {
 
 func main() {
 	c := client.Client{
-		Cache:        &cache.Cache{},
 		Cfg:          load(),
 		IsSubscriber: true,
 	}.Register()
