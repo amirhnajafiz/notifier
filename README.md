@@ -1,5 +1,11 @@
 # Notifier
 
-Create a web-service for sending notifications.
+Creating a service for sending notifications using **MQTT**.
 
-This project contains three steps, get message and date, save to MQTT, send it to user at a specific date.
+## What does this project do?
+
+## What is MQTT?
+
+## How to use?
+
+## Dependencies
