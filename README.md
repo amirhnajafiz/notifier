@@ -111,6 +111,11 @@ docker container run -it --name notifier -p 8080:80 notifier:v0.1
 
 Now the server is running on **localhost:8080**
 
+You can run the project dependencies and main server by the following command:
+```shell
+docker compose up -d
+```
+
 ## Dependencies
 - In this project we are using **MQTT** public server.
 - You need to have **redis** database setup already.
