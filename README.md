@@ -97,6 +97,20 @@ will get them like this:
 Sat, 26 Feb 2022 19:13:18 +0330 #Amirs-MacBook-Pro.local: test990
 ```
 
+## Docker
+You can set up the project via docker, use the following command
+to build the image:
+```shell
+docker build -t notifier:v0.1 .
+```
+
+Now run the image on a container:
+```shell
+docker container run -it --name notifier -p 8080:80 notifier:v0.1
+```
+
+Now the server is running on **localhost:8080**
+
 ## Dependencies
 - In this project we are using **MQTT** public server.
 - You need to have **redis** database setup already.
