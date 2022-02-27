@@ -1,0 +1,13 @@
+version: "3"
+services:
+  application:
+    build: .
+    ports:
+      - "8081:80"
+    image: "notifier:v1"
+  redis:
+    image: bitnami/redis
+    ports:
+      - "3678:80"
+    volumes:
+        - /db_redis:/bitnami/redis/data
