@@ -4,6 +4,12 @@ FROM ubuntu
 # switch to root
 USER root
 
+# turning off debian frontend
+ARG DEBIAN_FRONTEND=noninteractive
+
+# maintainer
+MAINTAINER "Amir hossein"
+
 # updating apt repositories
 RUN apt update
 
