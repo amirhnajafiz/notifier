@@ -8,7 +8,7 @@ USER root
 RUN apt update
 
 # installing golang
-RUN apt install golang-go
+RUN apt install golang-go -y
 
 # main working directory
 WORKDIR /app
