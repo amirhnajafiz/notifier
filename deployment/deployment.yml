@@ -14,10 +14,7 @@ spec:
     spec:
       containers:
       - name: notifier
-        image: <Image>
+        image: amirhossein21/notifier
         resources:
-          limits:
-            memory: "128Mi"
-            cpu: "500m"
         ports:
         - containerPort: 5000

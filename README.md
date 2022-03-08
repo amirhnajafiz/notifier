@@ -27,39 +27,8 @@ The temperature sensor (**publisher**) will send the data to _MQTT-broker_
 and the broker will send the data to clients (**subscribers**).
 
 ## How to use?
-Clone into the project and enter the project root:
-```shell
-git clone https://github.com/amirhnajafiz/Notifier.git
-cd Notifier
-```
-
-Copy the config file into your main root:
-```shell
-cp ./configs/config.example.yml config.yml
-```
-
-Now reset the configurations to run the project in your system.
-
-### Notifier Server
-Now run the notifier server with following command:
-```shell
-make dev
-```
-
-Response should be like this:
-```shell
- ┌───────────────────────────────────────────────────┐ 
- │                   Fiber v2.27.0                   │ 
- │               http://127.0.0.1:5000               │ 
- │       (bound on host 0.0.0.0 and port 5000)       │ 
- │                                                   │ 
- │ Handlers ............. 5  Processes ........... 1 │ 
- │ Prefork ....... Disabled  PID .............. 7443 │ 
- └───────────────────────────────────────────────────┘ 
-```
-
-Now you can send the notifications with the following route:
-```json lines
+Send the notifications with the following route:
+```js
 POST 'localhost:[PORT]/api/send'
 ```
 
@@ -98,27 +67,19 @@ Sat, 26 Feb 2022 19:13:18 +0330 #Amirs-MacBook-Pro.local: test990
 ```
 
 ## Docker
-You can set up the project via docker, use the following command
-to build the image:
-```shell
-docker build -t notifier:v0.1 .
-```
-
-Now run the image on a container:
-```shell
-docker container run -it --name notifier -p 8080:80 notifier:v0.1
-```
-
-Now the server is running on **localhost:8080**
-
-You can run the project dependencies and main server by the following command:
+You can set up the project via docker, use the following command:
 ```shell
 docker compose up -d
 ```
 
-## Dependencies
-- In this project we are using **MQTT** public server.
-- You need to have **redis** database setup already.
-- Using go v1.17
-- fiber/v2 v2.27.0
-- paho.mqtt.golang v1.3.5
+Now the server is running on **localhost:8080**
+
+## Deploy
+Deploy the project on kuber cluster with the following command:
+```shell
+kubctl apply -f deployment/deployment.yml
+```
+
+```shell
+kubctl apply -f deployment/services.yml
+```

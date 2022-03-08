@@ -3,6 +3,7 @@ kind: Service
 metadata:
   name: notifier
 spec:
+  type: LoadBalancer
   selector:
     app: notifier
   ports:
