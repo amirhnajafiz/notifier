@@ -1,6 +1,6 @@
 # Notifier
 
-Creating a service for sending notifications using **MQTT**.
+Creating a golang service for sending notifications using **MQTT**.
 
 ## What does this project do?
 In this project, we have a notifier service (written in _golang_) that allows
@@ -77,9 +77,9 @@ Now the server is running on **localhost:8080**
 ## Deploy
 Deploy the project on kuber cluster with the following command:
 ```shell
-kubctl apply -f deployment/deployment.yml
+kubectl apply -f deployment/deployment.yml
 ```
 
 ```shell
-kubctl apply -f deployment/services.yml
+kubectl apply -f deployment/services.yml
 ```
