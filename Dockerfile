@@ -13,6 +13,9 @@ COPY go.mod go.sum ./
 # copy all of the files
 COPY . ./
 
+# change work dir
+WORKDIR /app/cmd
+
 # building our file
 RUN go build -o /notifier
 
