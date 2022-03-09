@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: notifier
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: notifier
@@ -15,6 +15,9 @@ spec:
       containers:
       - name: notifier
         image: amirhossein21/notifier
-        resources:
         ports:
-        - containerPort: 5000
+        - containerPort: 8080
+      - name: redis
+        image: bitnami/redis
+        ports:
+          - containerPort: 3678
