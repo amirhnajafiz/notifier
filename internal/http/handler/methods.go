@@ -6,7 +6,7 @@ import (
 	"os"
 	"time"
 
-	"cmd/internal/http/request"
+	"github.com/amirhnajafiz/Notifier/internal/http/request"
 	"github.com/gofiber/fiber/v2"
 )
 
