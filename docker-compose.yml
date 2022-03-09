@@ -3,8 +3,8 @@ services:
   application:
     build: .
     ports:
-      - "8081:80"
-    image: "notifier:v1"
+      - "8080:80"
+    image: "notifier:0.2"
   redis:
     image: bitnami/redis
     ports:
