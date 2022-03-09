@@ -3,7 +3,6 @@ package config
 import (
 	"github.com/amirhnajafiz/Notifier/internal/cache"
 	"github.com/amirhnajafiz/Notifier/internal/client"
-	"github.com/amirhnajafiz/Notifier/internal/cmd/server"
 )
 
 func Default() Config {
@@ -16,9 +15,6 @@ func Default() Config {
 			Password: "public",
 			Debug:    false,
 			Topic:    "chat/room",
-		},
-		Server: server.Config{
-			Port: ":3030",
 		},
 		Cache: cache.Config{
 			Host:     "localhost:6379",

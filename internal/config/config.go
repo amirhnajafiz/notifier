@@ -5,7 +5,6 @@ import (
 
 	"github.com/amirhnajafiz/Notifier/internal/cache"
 	"github.com/amirhnajafiz/Notifier/internal/client"
-	"github.com/amirhnajafiz/Notifier/internal/cmd/server"
 	"github.com/knadh/koanf"
 	"github.com/knadh/koanf/parsers/yaml"
 	"github.com/knadh/koanf/providers/file"
@@ -14,7 +13,6 @@ import (
 
 type Config struct {
 	Client client.Config `koanf:"mqtt"`
-	Server server.Config `koanf:"serv"`
 	Cache  cache.Config  `koanf:"cache"`
 }
 
