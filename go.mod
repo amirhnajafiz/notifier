@@ -1,4 +1,4 @@
-module cmd
+module github.com/amirhnajafiz/Notifier
 
 go 1.17
 

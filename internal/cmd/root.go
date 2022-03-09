@@ -3,11 +3,11 @@ package cmd
 import (
 	"log"
 
-	"cmd/internal/cache"
-	"cmd/internal/client"
-	"cmd/internal/cmd/server"
-	"cmd/internal/config"
-	"cmd/internal/http/handler"
+	"github.com/amirhnajafiz/Notifier/internal/cache"
+	"github.com/amirhnajafiz/Notifier/internal/client"
+	"github.com/amirhnajafiz/Notifier/internal/cmd/server"
+	"github.com/amirhnajafiz/Notifier/internal/config"
+	"github.com/amirhnajafiz/Notifier/internal/http/handler"
 )
 
 func Execute() {
@@ -28,7 +28,7 @@ func Execute() {
 		Client: clt,
 	}.Register(app)
 
-	err := app.Listen(cfg.Server.Port)
+	err := app.Listen(":8080")
 	if err != nil {
 		log.Fatal(err)
 	}

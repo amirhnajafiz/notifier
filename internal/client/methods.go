@@ -1,11 +1,12 @@
 package client
 
 import (
-	"cmd/internal/http/request"
 	"encoding/json"
 	"fmt"
-	mqtt "github.com/eclipse/paho.mqtt.golang"
 	"log"
+
+	"github.com/amirhnajafiz/Notifier/internal/http/request"
+	mqtt "github.com/eclipse/paho.mqtt.golang"
 )
 
 func (c *Client) Publish(topic string, msg string) error {
