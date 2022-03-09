@@ -11,13 +11,19 @@ WORKDIR /app
 COPY go.mod go.sum ./
 
 # copy all of the files
-COPY . ./
+COPY . .
 
 # change work dir
 WORKDIR /app/cmd
 
 # building our file
 RUN go build -o /notifier
+
+# change WD
+WORKDIR /app
+
+# move the exe file
+RUN mv ./cmd/notifier ./notifier
 
 # running execute file
 CMD ["/notifier"]
