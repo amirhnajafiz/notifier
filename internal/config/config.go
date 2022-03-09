@@ -1,11 +1,11 @@
 package config
 
 import (
-	"cmd/internal/cache"
 	"log"
 
-	"cmd/internal/client"
-	"cmd/internal/cmd/server"
+	"github.com/amirhnajafiz/Notifier/internal/cache"
+	"github.com/amirhnajafiz/Notifier/internal/client"
+	"github.com/amirhnajafiz/Notifier/internal/cmd/server"
 	"github.com/knadh/koanf"
 	"github.com/knadh/koanf/parsers/yaml"
 	"github.com/knadh/koanf/providers/file"

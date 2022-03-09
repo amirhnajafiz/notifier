@@ -1,9 +1,9 @@
 package config
 
 import (
-	"cmd/internal/cache"
-	"cmd/internal/client"
-	"cmd/internal/cmd/server"
+	"github.com/amirhnajafiz/Notifier/internal/cache"
+	"github.com/amirhnajafiz/Notifier/internal/client"
+	"github.com/amirhnajafiz/Notifier/internal/cmd/server"
 )
 
 func Default() Config {
