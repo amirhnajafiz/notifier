@@ -17,7 +17,7 @@ COPY . .
 WORKDIR /app/cmd
 
 # building our file
-RUN go build -o /notifier
+RUN go build -o ./notifier
 
 # change WD
 WORKDIR /app
@@ -26,4 +26,4 @@ WORKDIR /app
 RUN mv ./cmd/notifier ./notifier
 
 # running execute file
-CMD ["/notifier"]
+CMD ["./notifier"]
