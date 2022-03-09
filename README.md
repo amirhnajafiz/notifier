@@ -27,12 +27,23 @@ The temperature sensor (**publisher**) will send the data to _MQTT-broker_
 and the broker will send the data to clients (**subscribers**).
 
 ## How to use?
-Send the notifications with the following route:
-```js
-POST 'localhost:[PORT]/api/send'
+Send the notifications with the following route:<br />
+url:
+```
+[HOST]:[PORT]/api/send
 ```
 
-Body:
+method:
+```
+POST
+```
+
+headers:
+```
+Contenct-type: application/json
+```
+
+body:
 ```json
 {
     "topic":   "[optional]", 
@@ -40,7 +51,7 @@ Body:
 }
 ```
 
-Response:
+response:
 ```json
 {
 	"length": 7,
@@ -50,7 +61,67 @@ Response:
 }
 ```
 
-### Client
+Since the sender name will be the host name that you are running the project on,
+you can update, remove, view the sender name:<br />
+#### Get currenct sender name
+url:
+```
+[HOST]:[PORT]/api/name
+```
+
+method:
+```
+GET
+```
+
+response:
+```json
+{
+  "nickname": "[the name you set]"
+}
+```
+
+#### Set a new name
+
+url:
+```
+[HOST]:[PORT]/api/name?nickname=[enter your nickname]
+```
+
+method:
+```
+PUT
+```
+
+response:
+```json
+{
+  "status": "200|OK",
+  "name": "[host name]",
+  "nickname": "[the name you set]"
+}
+```
+
+#### Reset the name to default
+
+url:
+```
+[HOST]:[PORT]/api/name
+```
+
+method:
+```
+DELETE
+```
+
+response:
+```json
+{
+  "status": "200|OK"
+}
+```
+
+## Client testing
 You can set **MQTT** options and configurations for your client,
 but if you don't change anything in **config.json**, it still works.
 
