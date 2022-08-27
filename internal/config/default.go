@@ -1,7 +1,6 @@
 package config
 
 import (
-	"github.com/amirhnajafiz/notifier/internal/cache"
 	"github.com/amirhnajafiz/notifier/internal/client"
 )
 
@@ -15,10 +14,6 @@ func Default() Config {
 			Password: "public",
 			Debug:    false,
 			Topic:    "chat/room",
-		},
-		Cache: cache.Config{
-			Host:     "localhost:6379",
-			Password: "",
 		},
 	}
 }
