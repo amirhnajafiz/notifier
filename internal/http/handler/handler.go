@@ -1,7 +1,7 @@
 package handler
 
 import (
-	"github.com/amirhnajafiz/Notifier/internal/client"
+	"github.com/amirhnajafiz/notifier/internal/client"
 	"github.com/gofiber/fiber/v2"
 )
 

@@ -3,8 +3,8 @@ package config
 import (
 	"log"
 
-	"github.com/amirhnajafiz/Notifier/internal/cache"
-	"github.com/amirhnajafiz/Notifier/internal/client"
+	"github.com/amirhnajafiz/notifier/internal/cache"
+	"github.com/amirhnajafiz/notifier/internal/client"
 	"github.com/knadh/koanf"
 	"github.com/knadh/koanf/parsers/yaml"
 	"github.com/knadh/koanf/providers/file"

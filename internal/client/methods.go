@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/amirhnajafiz/Notifier/internal/http/request"
+	"github.com/amirhnajafiz/notifier/internal/http/request"
 	mqtt "github.com/eclipse/paho.mqtt.golang"
 )
 

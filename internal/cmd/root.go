@@ -3,11 +3,11 @@ package cmd
 import (
 	"log"
 
-	"github.com/amirhnajafiz/Notifier/internal/cache"
-	"github.com/amirhnajafiz/Notifier/internal/client"
-	"github.com/amirhnajafiz/Notifier/internal/cmd/server"
-	"github.com/amirhnajafiz/Notifier/internal/config"
-	"github.com/amirhnajafiz/Notifier/internal/http/handler"
+	"github.com/amirhnajafiz/notifier/internal/cache"
+	"github.com/amirhnajafiz/notifier/internal/client"
+	"github.com/amirhnajafiz/notifier/internal/cmd/server"
+	"github.com/amirhnajafiz/notifier/internal/config"
+	"github.com/amirhnajafiz/notifier/internal/http/handler"
 )
 
 func Execute() {
@@ -24,6 +24,7 @@ func Execute() {
 	}
 
 	app := server.New()
+
 	handler.Handler{
 		Client: clt,
 	}.Register(app)

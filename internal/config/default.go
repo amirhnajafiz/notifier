@@ -1,8 +1,8 @@
 package config
 
 import (
-	"github.com/amirhnajafiz/Notifier/internal/cache"
-	"github.com/amirhnajafiz/Notifier/internal/client"
+	"github.com/amirhnajafiz/notifier/internal/cache"
+	"github.com/amirhnajafiz/notifier/internal/client"
 )
 
 func Default() Config {

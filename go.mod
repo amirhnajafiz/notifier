@@ -1,6 +1,6 @@
-module github.com/amirhnajafiz/Notifier
+module github.com/amirhnajafiz/notifier
 
-go 1.17
+go 1.18
 
 require (
 	github.com/eclipse/paho.mqtt.golang v1.3.5
