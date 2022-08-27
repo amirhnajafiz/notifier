@@ -3,7 +3,6 @@ package config
 import (
 	"log"
 
-	"github.com/amirhnajafiz/notifier/internal/cache"
 	"github.com/amirhnajafiz/notifier/internal/client"
 	"github.com/knadh/koanf"
 	"github.com/knadh/koanf/parsers/yaml"
@@ -13,7 +12,6 @@ import (
 
 type Config struct {
 	Client client.Config `koanf:"mqtt"`
-	Cache  cache.Config  `koanf:"cache"`
 }
 
 func New() Config {
