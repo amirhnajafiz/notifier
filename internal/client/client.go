@@ -7,14 +7,12 @@ import (
 	"time"
 
 	mqtt "github.com/eclipse/paho.mqtt.golang"
-	"github.com/go-redis/redis/v8"
 )
 
 type Client struct {
 	Connection   mqtt.Client
 	Cfg          Config
 	IsSubscriber bool
-	Rdb          *redis.Client
 }
 
 func (c Client) Register() Client {
@@ -27,6 +25,7 @@ func (c Client) Register() Client {
 	port := c.Cfg.Port
 
 	opts := mqtt.NewClientOptions()
+
 	opts.AddBroker(fmt.Sprintf("tcp://%s:%d", broker, port))
 	opts.SetClientID(c.Cfg.ClientID)
 	opts.SetUsername(c.Cfg.Username)

@@ -3,7 +3,6 @@ package cmd
 import (
 	"log"
 
-	"github.com/amirhnajafiz/notifier/internal/cache"
 	"github.com/amirhnajafiz/notifier/internal/client"
 	"github.com/amirhnajafiz/notifier/internal/cmd/server"
 	"github.com/amirhnajafiz/notifier/internal/config"
@@ -16,7 +15,6 @@ func Execute() {
 	clt := client.Client{
 		Cfg:          cfg.Client,
 		IsSubscriber: false,
-		Rdb:          cache.New(cfg.Cache),
 	}.Register()
 
 	if token := clt.Connect(); token.Wait() && token.Error() != nil {
