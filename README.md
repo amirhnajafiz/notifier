@@ -1,9 +1,13 @@
+<p align="center">
+    <img src="assets/logo.webp" width="300" alt="logo" />
+</p>
+
 <h1 align="center">
 Notifier
 </h1>
 
 Creating a golang service for sending notifications using **MQTT**. The main idea 
-behind this service is to work with **RabbitMQT** in **Golang**.
+behind this service is to work with **RabbitMQ** in **Golang**.
 
 In this project, we have a notifier service (written in _golang_) that allows
 us to send notifications to our clients using **MQTT**.
@@ -12,9 +16,9 @@ By setting the _topic_, you can send data into different channels. On the other
 hand, the clients will receive data from those channels.
 
 ## What do you learn in this project?
-- RabbitMQT
+- RabbitMQ
 
-## What is MQTT?
+## What is MQTT (RabbitMQ)?
 MQTT (_MQ Telemetry Transport_) is a lightweight 
 open messaging protocol that provides resource-constrained 
 network clients with a simple way to distribute telemetry 
