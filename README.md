@@ -1,13 +1,18 @@
-# Notifier
+<h1 align="center">
+Notifier
+</h1>
 
-Creating a golang service for sending notifications using **MQTT**.
+Creating a golang service for sending notifications using **MQTT**. The main idea 
+behind this service is to work with **RabbitMQT** in **Golang**.
 
-## What does this project do?
 In this project, we have a notifier service (written in _golang_) that allows
 us to send notifications to our clients using **MQTT**.
 
 By setting the _topic_, you can send data into different channels. On the other
 hand, the clients will receive data from those channels.
+
+## What do you learn in this project?
+- RabbitMQT
 
 ## What is MQTT?
 MQTT (_MQ Telemetry Transport_) is a lightweight 
@@ -21,26 +26,24 @@ communication pattern, is used for machine-to-machine
 
 Imagine the following example:
 
-<img src="./assets/MQTT_Schema_EN.jpeg" />
+<p align="center">
+<img src="./assets/MQTT_Schema_EN.jpeg" width="300" />
+</p>
 
 The temperature sensor (**publisher**) will send the data to _MQTT-broker_
 and the broker will send the data to clients (**subscribers**).
 
-## How to use?
+## How to use this project?
+Run the application:
+```shell
+go run main.go
+```
+
 Send the notifications with the following route:<br />
-url:
 ```
-[HOST]:[PORT]/api/send
-```
-
-method:
-```
-POST
-```
-
-headers:
-```
-Contenct-type: application/json
+URL: /api/send
+Method: POST
+Headers: Contenct-type: application/json
 ```
 
 body:
@@ -48,16 +51,6 @@ body:
 {
     "topic":   "[optional]", 
     "message": "[data]"
-}
-```
-
-response:
-```json
-{
-	"length": 7,
-	"send from": "amir",
-	"status": "200|OK",
-	"time": "Sat, 26 Feb 2022 19:14:10 +0330"
 }
 ```
 
@@ -81,72 +74,27 @@ response:
 }
 ```
 
-#### Set a new name
-
-url:
-```
-[HOST]:[PORT]/api/name?nickname=[enter your nickname]
-```
-
-method:
-```
-PUT
-```
-
-response:
-```json
-{
-  "status": "200|OK",
-  "name": "[host name]",
-  "nickname": "[the name you set]"
-}
-```
-
-#### Reset the name to default
-
-url:
-```
-[HOST]:[PORT]/api/name
-```
-
-method:
-```
-DELETE
-```
-
-response:
-```json
-{
-  "status": "200|OK"
-}
-```
-
 ## Client testing
 You can set **MQTT** options and configurations for your client,
 but if you don't change anything in **config.json**, it still works.
 
-Run your clients with the following command:
-```shell
-make cli
-```
+```go
+func main() {
+	c := client.Client{
+		Cfg:          load(),
+		IsSubscriber: true,
+	}.Register()
 
-Now the client is listening to the MQTT-Broker to receive data.
-Once you send the notifications via notifier server, clients
-will get them like this:
-```
-Sat, 26 Feb 2022 19:13:18 +0330 #Amirs-MacBook-Pro.local: test990
-```
+	if token := c.Connect(); token.Wait() && token.Error() != nil {
+		panic(token.Error())
+	}
 
-## Docker
-You can set up the project via docker, use the following command:
-```shell
-docker compose up -d
+	select {}
+}
 ```
-
-Now the server is running on **localhost:8080**
 
 ## Deploy
-Deploy the project on kuber cluster with the following command:
+Deploy the project on kubernetes cluster with the following command:
 ```shell
 kubectl apply -f deployment/deployment.yml
 ```
