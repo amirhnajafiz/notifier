@@ -58,26 +58,6 @@ body:
 }
 ```
 
-Since the sender name will be the host name that you are running the project on,
-you can update, remove, view the sender name:<br />
-#### Get currenct sender name
-url:
-```
-[HOST]:[PORT]/api/name
-```
-
-method:
-```
-GET
-```
-
-response:
-```json
-{
-  "nickname": "[the name you set]"
-}
-```
-
 ## Client testing
 You can set **MQTT** options and configurations for your client,
 but if you don't change anything in **config.json**, it still works.
